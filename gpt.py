@@ -1,5 +1,6 @@
 from openai import OpenAI
 import json
+import argparse
 from tqdm import tqdm
 
 
@@ -17,9 +18,9 @@ def GPT(instruction):
     return result
 
 
-def main():
+def main(args):
     global CLIENT, SYSTEM_CONTENT
-    # key goes here
+    CLIENT = OpenAI(api_key = "")
     SYSTEM_CONTENT = \
 """
 From now on, you will be my helpful assistant on paraphrasing the\
@@ -29,7 +30,7 @@ paraphrase the sentences using new vocabularies, new phrases, and new tone of vo
 as if the instructions are given by another human user. \
 Please do not generate any reply for this content prompt, and just generate the paraphrased instructions.
 """
-    with open("./REVERIE_val_seen_original.json", 'r') as file:
+    with open(f"./REVERIE_{args.split}_original.json", 'r') as file:
         instructions = json.load(file)
 
     dict_ = {}
@@ -38,9 +39,12 @@ Please do not generate any reply for this content prompt, and just generate the 
         result = GPT(instruction_list).split('\n')
         dict_[key] = result
 
-    with open("./REVERIE_val_seen_new.json", "w") as json_file:
+    with open(f"./REVERIE_{args.split}_new.json", "w") as json_file:
         json.dump(dict_, json_file)        
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--split', type=str)
+    args = parser.parse_args()
+    main(args)
