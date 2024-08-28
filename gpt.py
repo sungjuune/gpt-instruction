@@ -19,7 +19,7 @@ def GPT(instruction):
 
 def main():
     global CLIENT, SYSTEM_CONTENT
-    # openai key goes here
+    # key goes here
     SYSTEM_CONTENT = \
 """
 From now on, you will be my helpful assistant on paraphrasing the\
