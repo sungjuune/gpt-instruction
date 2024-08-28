@@ -19,7 +19,7 @@ def GPT(instruction):
 
 def main():
     global CLIENT, SYSTEM_CONTENT
-    CLIENT = OpenAI(api_key = "sk-ket5TWTBO2lu5W7EhJFlHxf_irgCakAPO_kV3ChS3ST3BlbkFJJ1X48T5jZbNfAg3lRxDNt3H6rQ-p2TPHn0TdhrbCkA")
+    CLIENT = OpenAI(api_key = "\\\")
     SYSTEM_CONTENT = \
 """
 From now on, you will be my helpful assistant on paraphrasing the\
